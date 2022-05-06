@@ -2,7 +2,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # control plane nsg and rules
-resource "oci_core_network_security_group" "cp" {
+/* resource "oci_core_network_security_group" "cp" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "control-plane" : "${var.label_prefix}-control-plane"
   vcn_id         = var.vcn_id
@@ -297,7 +297,7 @@ resource "oci_core_network_security_group_security_rule" "workers_healthcheck_in
   lifecycle {
     ignore_changes = [source, source_type, direction, protocol, tcp_options]
   }
-}
+} */
 
 # internal lb nsg and rules
 resource "oci_core_network_security_group" "int_lb" {
@@ -516,112 +516,4 @@ resource "oci_core_network_security_group_security_rule" "waf_ingress" {
   }
 }
 
-## fss : instance network security group rules
 
-resource "oci_core_network_security_group_security_rule" "fss_inst_ingress" {
-  network_security_group_id = oci_core_network_security_group.workers.id
-  direction                 = "INGRESS"
-  protocol                  = local.fss_inst_ingress[count.index].protocol
-  source                    = local.fss_inst_ingress[count.index].source
-  source_type               = local.fss_inst_ingress[count.index].source_type
-  description               = local.fss_inst_ingress[count.index].description
-  stateless                 = false
-
-  dynamic "tcp_options" {
-    for_each = local.fss_inst_ingress[count.index].protocol == local.tcp_protocol ? [1] : []
-    content {
-      source_port_range {
-        min = local.fss_inst_ingress[count.index].port
-        max = local.fss_inst_ingress[count.index].port
-      }
-    }
-  }
-
-  dynamic "udp_options" {
-    for_each = local.fss_inst_ingress[count.index].protocol == local.udp_protocol ? [1] : []
-    content {
-      source_port_range {
-        min = local.fss_inst_ingress[count.index].port
-        max = local.fss_inst_ingress[count.index].port
-      }
-    }
-  }
-
-  count = var.create_fss ? length(local.fss_inst_ingress) : 0
-}
-
-resource "oci_core_network_security_group_security_rule" "fss_inst_egress" {
-  network_security_group_id = oci_core_network_security_group.workers.id
-  direction                 = "EGRESS"
-  protocol                  = local.fss_inst_egress[count.index].protocol
-  destination               = local.fss_inst_egress[count.index].destination
-  destination_type          = local.fss_inst_egress[count.index].destination_type
-  description               = local.fss_inst_egress[count.index].description
-  stateless                 = false
-
-  dynamic "tcp_options" {
-    for_each = local.fss_inst_egress[count.index].protocol == local.tcp_protocol ? [1] : []
-    content {
-      destination_port_range {
-        min = local.fss_inst_egress[count.index].port
-        max = local.fss_inst_egress[count.index].port
-      }
-    }
-  }
-
-  dynamic "udp_options" {
-    for_each = local.fss_inst_egress[count.index].protocol == local.udp_protocol ? [1] : []
-    content {
-      destination_port_range {
-        min = local.fss_inst_egress[count.index].port
-        max = local.fss_inst_egress[count.index].port
-      }
-    }
-  }
-
-  count = var.create_fss ? length(local.fss_inst_egress) : 0
-}
-
-
-# Operator nsg and rules
-resource "oci_core_network_security_group" "operator" {
-  compartment_id = var.compartment_id
-  display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-  vcn_id         = var.vcn_id
-}
-
-
-resource "oci_core_network_security_group_security_rule" "operator_ingress" {
-  network_security_group_id = oci_core_network_security_group.operator.id
-  description               = local.operator_ingress_seclist[count.index].description
-  direction                 = "INGRESS"
-  protocol                  = local.operator_ingress_seclist[count.index].protocol
-  source                    = local.operator_ingress_seclist[count.index].source
-  source_type               = local.operator_ingress_seclist[count.index].source_type
-
-  stateless = false
-
-  dynamic "tcp_options" {
-    for_each = local.operator_ingress_seclist[count.index].protocol == local.tcp_protocol ? [1] : []
-    content {
-      destination_port_range {
-        min = local.operator_ingress_seclist[count.index].port
-        max = local.operator_ingress_seclist[count.index].port
-      }
-    }
-  }
-
-  dynamic "icmp_options" {
-    for_each = local.operator_ingress_seclist[count.index].protocol == local.icmp_protocol ? [1] : []
-    content {
-      type = 3
-      code = 4
-    }
-  }
-
-  count = length(local.operator_ingress_seclist)
-
-  lifecycle {
-    ignore_changes = [source, source_type, direction, protocol, tcp_options]
-  }
-}

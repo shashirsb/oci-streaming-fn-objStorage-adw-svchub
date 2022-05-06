@@ -72,13 +72,6 @@ module "extensions" {
   ssh_public_key_path  = var.ssh_public_key_path
 
 
-  # ocir parameters
-  /* email_address    = var.email_address
-  secret_id        = var.secret_id
-  secret_name      = var.secret_name
-  secret_namespace = var.secret_namespace
-  username         = var.username
-  */
   debug_mode = var.debug_mode
 
   depends_on = [

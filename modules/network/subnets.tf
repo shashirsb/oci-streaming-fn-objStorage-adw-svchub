@@ -1,26 +1,7 @@
 # Copyright 2017, 2021 Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
-resource "oci_core_subnet" "cp" {
-  cidr_block                 = local.cp_subnet
-  compartment_id             = var.compartment_id
-  display_name               = var.label_prefix == "none" ? "control-plane" : "${var.label_prefix}-control-plane"
-  dns_label                  = "cp"
-  prohibit_public_ip_on_vnic = var.control_plane_type == "private" ? true : false
-  route_table_id             = var.control_plane_type == "private" ? var.nat_route_id : var.ig_route_id
-  security_list_ids          = [oci_core_security_list.control_plane_seclist.id]
-  vcn_id                     = var.vcn_id
-}
 
-resource "oci_core_subnet" "workers" {
-  cidr_block                 = local.workers_subnet
-  compartment_id             = var.compartment_id
-  display_name               = var.label_prefix == "none" ? "workers" : "${var.label_prefix}-workers"
-  dns_label                  = "workers"
-  prohibit_public_ip_on_vnic = var.worker_type == "private" ? true : false
-  route_table_id             = var.worker_type == "private" ? var.nat_route_id : var.ig_route_id
-  vcn_id                     = var.vcn_id
-}
 
 resource "oci_core_subnet" "int_lb" {
   cidr_block                 = local.int_lb_subnet
@@ -57,13 +38,4 @@ resource "oci_core_subnet" "db" {
   security_list_ids          = [oci_core_security_list.db.id]
 }
 
- /* resource "oci_core_subnet" "operator" {
-  cidr_block                 = local.operator_subnet
-  compartment_id             = var.compartment_id
-  display_name               = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-  dns_label                  = "operator"
-  prohibit_public_ip_on_vnic = true
-  route_table_id             = var.nat_route_id
-  vcn_id                     = var.vcn_id
-  security_list_ids          = [oci_core_security_list.operator_seclist.id]
-}  */
+
