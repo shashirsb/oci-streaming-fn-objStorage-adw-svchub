@@ -300,7 +300,7 @@ resource "oci_core_network_security_group_security_rule" "workers_healthcheck_in
 } */
 
 # internal lb nsg and rules
-resource "oci_core_network_security_group" "int_lb" {
+/* resource "oci_core_network_security_group" "int_lb" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "int-lb" : "${var.label_prefix}-int-lb"
   vcn_id         = var.vcn_id
@@ -341,10 +341,10 @@ resource "oci_core_network_security_group_security_rule" "int_lb_egress" {
   }
 
   count = var.load_balancers == "internal" || var.load_balancers == "both" ? length(local.int_lb_egress) : 0
-}
+} */
 
 # add this rule separately so it can be controlled independently
-resource "oci_core_network_security_group_security_rule" "int_lb_healthcheck_ingress_from_pub_lb" {
+/* resource "oci_core_network_security_group_security_rule" "int_lb_healthcheck_ingress_from_pub_lb" {
   network_security_group_id = oci_core_network_security_group.int_lb[0].id
   description               = "Allow healthchecks from public load balancers"
   direction                 = "INGRESS"
@@ -366,10 +366,10 @@ resource "oci_core_network_security_group_security_rule" "int_lb_healthcheck_ing
   }
 
   count = var.load_balancers == "both" ? length(var.internal_lb_allowed_ports) : 0
-}
+} */
 
 # public lb nsg and rules
-resource "oci_core_network_security_group" "pub_lb" {
+/* resource "oci_core_network_security_group" "pub_lb" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "pub-lb" : "${var.label_prefix}-pub-lb"
   vcn_id         = var.vcn_id
@@ -514,6 +514,6 @@ resource "oci_core_network_security_group_security_rule" "waf_ingress" {
   lifecycle {
     ignore_changes = [source, source_type, direction, protocol, tcp_options, icmp_options]
   }
-}
+} */
 
 

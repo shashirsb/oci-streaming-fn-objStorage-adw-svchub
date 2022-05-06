@@ -175,6 +175,14 @@ variable "availability_domains" {
 
 ## Allowed cidrs and ports for load balancers
 
+## waf
+variable "enable_waf" {
+  description = "Whether to enable WAF monitoring of load balancers"
+  type        = bool
+  default     = false
+}
+
+
 variable "load_balancers" {
   # values: both, internal, public
   default     = "public"

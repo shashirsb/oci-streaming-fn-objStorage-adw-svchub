@@ -3,7 +3,7 @@
 
 
 # db security checklist
-resource "oci_core_security_list" "db" {
+/* resource "oci_core_security_list" "db" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "db" : "${var.label_prefix}-db"
   vcn_id         = var.vcn_id
@@ -33,5 +33,5 @@ resource "oci_core_security_list" "db" {
       max = local.db_port
     }
   }
-}
+} */
 
