@@ -73,23 +73,16 @@ module "extensions" {
 
 
   # ocir parameters
-  email_address    = var.email_address
+  /* email_address    = var.email_address
   secret_id        = var.secret_id
   secret_name      = var.secret_name
   secret_namespace = var.secret_namespace
   username         = var.username
-
-
-
-
- 
+  */
   debug_mode = var.debug_mode
 
   depends_on = [
-    module.bastion,
-    module.network,
-    module.operator,
-    module.oke
+    module.network
   ]
 
   providers = {
