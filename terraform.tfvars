@@ -60,8 +60,8 @@ subnets = {
 }
 
 vcn_cidrs     = ["10.2.0.0/16"]
-vcn_dns_label = "oke"
-vcn_name      = "vcnoke"
+vcn_dns_label = "fedbank"
+vcn_name      = "vcnfedbank"
 
 # availability_domains
 availability_domains = {
