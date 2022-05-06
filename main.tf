@@ -49,6 +49,9 @@ module "network" {
   subnets      = var.subnets
   vcn_id       = module.vcn.vcn_id
 
+  # load balancer network parameters
+  load_balancers = var.load_balancers
+
    # internal load balancer
   internal_lb_allowed_cidrs = var.internal_lb_allowed_cidrs
   internal_lb_allowed_ports = var.internal_lb_allowed_ports

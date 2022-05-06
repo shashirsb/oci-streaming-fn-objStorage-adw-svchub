@@ -174,6 +174,18 @@ variable "availability_domains" {
 }
 
 ## Allowed cidrs and ports for load balancers
+
+variable "load_balancers" {
+  # values: both, internal, public
+  default     = "public"
+  description = "The type of subnets to create for load balancers."
+  type        = string
+  validation {
+    condition     = contains(["public", "internal", "both"], var.load_balancers)
+    error_message = "Accepted values are public, internal or both."
+  }
+}
+
 variable "internal_lb_allowed_cidrs" {
   default     = ["0.0.0.0/0"]
   description = "The list of CIDR blocks from which the internal load balancer can be accessed."
