@@ -72,23 +72,7 @@ locals {
       protocol         = local.tcp_protocol,
       port             = 443
       stateless        = false
-    },
-    {
-      description      = "Allow stateful egress to workers. Required for NodePorts",
-      destination      = local.workers_subnet,
-      destination_type = "CIDR_BLOCK",
-      protocol         = local.tcp_protocol,
-      port             = "30000-32767",
-      stateless        = false
-    },
-    {
-      description      = "Allow ICMP traffic for path discovery to worker nodes",
-      destination      = local.workers_subnet,
-      destination_type = "CIDR_BLOCK",
-      protocol         = local.icmp_protocol,
-      port             = -1,
-      stateless        = false
-    },
+    }
   ]
 
   public_lb_allowed_cidrs           = var.public_lb_allowed_cidrs
@@ -98,7 +82,7 @@ locals {
 
   # db - defined but not used
 
-db_ingress_seclist = [
+/* db_ingress_seclist = [
     {
       description = "Allow DB host to accept ssh request from Bastion.",
       protocol    = local.all_protocols,
@@ -119,4 +103,4 @@ db_ingress_seclist = [
   db_port = 1521
 
 
-}
+} */
