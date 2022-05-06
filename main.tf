@@ -35,125 +35,6 @@ module "vcn" {
 
 }
 
-# bastion
-module "bastion" {
-  source  = "oracle-terraform-modules/bastion/oci"
-  version = "3.0.0"
-
-  tenancy_id     = var.tenancy_id
-  compartment_id = var.compartment_id
-
-  label_prefix = var.label_prefix
-
-  # networking
-  availability_domain = var.availability_domains["bastion"]
-  bastion_access      = var.bastion_access
-  ig_route_id         = module.vcn.ig_route_id
-  netnum              = lookup(var.subnets["bastion"], "netnum")
-  newbits             = lookup(var.subnets["bastion"], "newbits")
-  vcn_id              = module.vcn.vcn_id
-
-  # bastion host parameters
-  bastion_image_id   = var.bastion_image_id
-  bastion_os_version = var.bastion_os_version
-  bastion_shape      = var.bastion_shape
-  bastion_state      = var.bastion_state
-  bastion_timezone   = var.bastion_timezone
-  bastion_type       = var.bastion_type
-
-  ssh_public_key      = var.ssh_public_key
-  ssh_public_key_path = var.ssh_public_key_path
-  upgrade_bastion     = var.upgrade_bastion
-
-  # bastion notification
-  enable_bastion_notification   = var.enable_bastion_notification
-  bastion_notification_endpoint = var.bastion_notification_endpoint
-  bastion_notification_protocol = var.bastion_notification_protocol
-  bastion_notification_topic    = var.bastion_notification_topic
-
-  freeform_tags = var.freeform_tags["bastion"]
-
-  providers = {
-    oci.home = oci.home
-  }
-
-  depends_on = [
-    module.vcn
-  ]
-
-  count = var.create_bastion_host == true ? 1 : 0
-}
-
-module "operator" {
-  source  = "oracle-terraform-modules/operator/oci"
-  version = "3.0.3"
-
-  tenancy_id = var.tenancy_id
-
-  # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
-
-  # networking
-  availability_domain = var.availability_domains["operator"]
-  nat_route_id        = module.vcn.nat_route_id
-  netnum              = lookup(var.subnets["operator"], "netnum")
-  newbits             = lookup(var.subnets["operator"], "newbits")
-  nsg_ids             = concat(var.operator_nsg_ids, [module.network.operator_nsg_id]) 
-  vcn_id              = module.vcn.vcn_id
-
-  # operator host parameters
-  operator_image_id                  = var.operator_image_id
-  enable_operator_instance_principal = var.enable_operator_instance_principal
-  enable_pv_encryption_in_transit    = var.enable_operator_pv_encryption_in_transit
-  operator_os_version                = var.operator_os_version
-  operator_shape                     = var.operator_shape
-  operator_state                     = var.operator_state
-  operator_timezone                  = var.operator_timezone
-  ssh_public_key                     = var.ssh_public_key
-  ssh_public_key_path                = var.ssh_public_key_path
-  upgrade_operator                   = var.upgrade_operator
-  boot_volume_encryption_key         = var.operator_volume_kms_id
-
-  # operator notification
-  enable_operator_notification   = var.enable_operator_notification
-  operator_notification_endpoint = var.operator_notification_endpoint
-  operator_notification_protocol = var.operator_notification_protocol
-  operator_notification_topic    = var.operator_notification_topic
-
-  freeform_tags = var.freeform_tags["operator"]
-
-  providers = {
-    oci.home = oci.home
-  }
-
-  depends_on = [
-    module.vcn, 
-  ]
-
-  count = var.create_operator == true ? 1 : 0
-}
-
-module "bastionsvc" {
-  source = "./modules/bastionsvc"
-
-  # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
-
-  # bastion service parameters
-  bastion_service_access        = var.bastion_service_access
-  bastion_service_name          = var.bastion_service_name
-  bastion_service_target_subnet = var.bastion_service_target_subnet
-  vcn_id                        = module.vcn.vcn_id
-
-  depends_on = [
-    module.operator
-  ]
-
-  count = var.create_bastion_service == true ? 1 : 0
-}
-
 # additional networking for oke
 module "network" {
   source = "./modules/network"
@@ -162,132 +43,12 @@ module "network" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
-  # oke networking parameters
-  ig_route_id  = module.vcn.ig_route_id
-  nat_route_id = module.vcn.nat_route_id
-  subnets      = var.subnets
-  vcn_id       = module.vcn.vcn_id
-
-  # control plane endpoint parameters
-  control_plane_type          = var.control_plane_type
-  control_plane_allowed_cidrs = var.control_plane_allowed_cidrs
-
-  # oke worker network parameters
-  allow_node_port_access       = var.allow_node_port_access
-  allow_worker_internet_access = var.allow_worker_internet_access
-  allow_worker_ssh_access      = var.allow_worker_ssh_access
-  worker_type                  = var.worker_type
-
-  # oke load balancer network parameters
-  load_balancers = var.load_balancers
-
-  # oke internal load balancer
-  internal_lb_allowed_cidrs = var.internal_lb_allowed_cidrs
-  internal_lb_allowed_ports = var.internal_lb_allowed_ports
-
-  # oke public load balancer
-  public_lb_allowed_cidrs = var.public_lb_allowed_cidrs
-  public_lb_allowed_ports = var.public_lb_allowed_ports
-
   # waf integration
   enable_waf = var.enable_waf
-
-  # fss integration
-  create_fss = var.create_fss
 
   depends_on = [
     module.vcn
   ]
-}
-
-# cluster creation for oke
-module "oke" {
-  source = "./modules/oke"
-
-  # provider
-  tenancy_id = var.tenancy_id
-
-  # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
-
-  # ssh keys
-  ssh_public_key      = var.ssh_public_key
-  ssh_public_key_path = var.ssh_public_key_path
-
-  # oke cluster parameters
-  cluster_kubernetes_version                              = var.kubernetes_version
-  control_plane_type                                      = var.control_plane_type
-  control_plane_nsgs                                      = concat(var.control_plane_nsgs, [module.network.control_plane_nsg_id])
-  cluster_name                                            = var.cluster_name
-  cluster_options_add_ons_is_kubernetes_dashboard_enabled = var.dashboard_enabled
-  cluster_options_kubernetes_network_config_pods_cidr     = var.pods_cidr
-  cluster_options_kubernetes_network_config_services_cidr = var.services_cidr
-  cluster_subnets                                         = module.network.subnet_ids
-  vcn_id                                                  = module.vcn.vcn_id
-  use_cluster_encryption                                  = var.use_cluster_encryption
-  cluster_kms_key_id                                      = var.cluster_kms_key_id
-  use_signed_images                                       = var.use_signed_images
-  image_signing_keys                                      = var.image_signing_keys
-  admission_controller_options                            = var.admission_controller_options
-
-  # oke node pool parameters
-  node_pools                      = var.node_pools
-  node_pool_name_prefix           = var.node_pool_name_prefix
-  node_pool_image_id              = var.node_pool_image_id
-  node_pool_os                    = var.node_pool_os
-  node_pool_os_version            = var.node_pool_os_version
-  node_pool_timezone              = var.node_pool_timezone
-  enable_pv_encryption_in_transit = var.enable_pv_encryption_in_transit
-  use_node_pool_volume_encryption = var.use_node_pool_volume_encryption
-  node_pool_volume_kms_key_id     = var.node_pool_volume_kms_key_id
-
-  # oke load balancer parameters
-  preferred_load_balancer = var.preferred_load_balancer
-
-  # worker nsgs
-  worker_nsgs = concat(var.worker_nsgs, [module.network.worker_nsg_id])
-
-
-  # freeform_tags
-  freeform_tags = var.freeform_tags["oke"]
-
-  depends_on = [
-    module.network
-  ]
-
-  providers = {
-    oci.home = oci.home
-  }
-}
-
-#fss
-module "storage" {
-  source = "./modules/storage"
-
-  # general oci parameters
-  tenancy_id          = var.tenancy_id
-  compartment_id      = var.compartment_id
-  availability_domain = var.availability_domains["fss"]
-  label_prefix        = var.label_prefix
-
-  # FSS network information
-  subnets      = var.subnets
-  vcn_id       = module.vcn.vcn_id
-  nat_route_id = module.vcn.nat_route_id
-
-  fss_mount_path = var.fss_mount_path
-
-  # Export set configuration
-  max_fs_stat_bytes = var.max_fs_stat_bytes
-  max_fs_stat_files = var.max_fs_stat_files
-
-  providers = {
-    oci.home = oci.home
-  }
-
-  count = var.create_fss == true ? 1 : 0
-
 }
 
 # extensions to oke
@@ -310,25 +71,6 @@ module "extensions" {
   ssh_public_key       = var.ssh_public_key
   ssh_public_key_path  = var.ssh_public_key_path
 
-  # bastion
-  create_bastion_host = var.create_bastion_host
-  bastion_public_ip   = local.bastion_public_ip
-  bastion_state       = var.bastion_state
-
-  # operator details
-  create_operator                    = var.create_operator
-  operator_private_ip                = local.operator_private_ip
-  operator_state                     = var.operator_state
-  operator_dynamic_group             = local.operator_instance_principal_group_name
-  enable_operator_instance_principal = var.enable_operator_instance_principal
-  operator_os_version                = var.operator_os_version
-
-  # oke cluster parameters
-  cluster_id                   = module.oke.cluster_id
-  pods_cidr                    = var.pods_cidr
-  use_cluster_encryption       = var.use_cluster_encryption
-  cluster_kms_key_id           = var.cluster_kms_key_id
-  cluster_kms_dynamic_group_id = module.oke.cluster_kms_dynamic_group_id
 
   # ocir parameters
   email_address    = var.email_address
@@ -337,32 +79,7 @@ module "extensions" {
   secret_namespace = var.secret_namespace
   username         = var.username
 
-  # calico parameters
-  calico_version = var.calico_version
-  install_calico = var.enable_calico
 
-  # metric server
-  enable_metric_server = var.enable_metric_server
-  enable_vpa           = var.enable_vpa
-  vpa_version          = var.vpa_version
-
-  #Gatekeeper
-  enable_gatekeeper   = var.enable_gatekeeper
-  gatekeeeper_version = var.gatekeeeper_version
-
-  # service account
-  create_service_account               = var.create_service_account
-  service_account_name                 = var.service_account_name
-  service_account_namespace            = var.service_account_namespace
-  service_account_cluster_role_binding = var.service_account_cluster_role_binding
-
-  #check worker nodes are active
-  check_node_active = var.check_node_active
-
-  # oke upgrade
-  upgrade_nodepool        = var.upgrade_nodepool
-  nodepool_upgrade_method = var.nodepool_upgrade_method
-  node_pools_to_drain     = var.node_pools_to_drain
 
 
  
@@ -381,7 +98,7 @@ module "extensions" {
 }
 
 # database 
-module "db" {
+/* module "db" {
   source = "./modules/db"
 
   # ssh keys
@@ -444,7 +161,7 @@ module "db" {
   depends_on = [
     module.oke
   ]
-} 
+}  */
 
 
 
