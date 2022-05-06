@@ -10,10 +10,10 @@ output "subnet_ids" {
 output "int_lb" {
   value = var.load_balancers == "internal" || var.load_balancers == "both" ? oci_core_network_security_group.int_lb[0].id : ""
 }
-
+/* 
 output "pub_lb" {
   value = var.load_balancers == "public" || var.load_balancers == "both" ? oci_core_network_security_group.pub_lb[0].id :""
-}
+} */
 
 
 
