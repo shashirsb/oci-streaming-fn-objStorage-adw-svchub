@@ -49,6 +49,14 @@ module "network" {
   subnets      = var.subnets
   vcn_id       = module.vcn.vcn_id
 
+   # internal load balancer
+  internal_lb_allowed_cidrs = var.internal_lb_allowed_cidrs
+  internal_lb_allowed_ports = var.internal_lb_allowed_ports
+
+  #  public load balancer
+  public_lb_allowed_cidrs = var.public_lb_allowed_cidrs
+  public_lb_allowed_ports = var.public_lb_allowed_ports
+
   # waf integration
   enable_waf = var.enable_waf
 
