@@ -20,10 +20,10 @@ output "int_lb_nsg" {
   value       = module.network.int_lb
 }
 
-output "pub_lb_nsg" {
+/* output "pub_lb_nsg" {
   description = "id of default NSG that can be associated with the internal load balancer"
   value       = module.network.pub_lb
-}
+} */
 
 output "subnet_ids" {
   description = "map of subnet ids (worker, int_lb, pub_lb) used by OKE."
