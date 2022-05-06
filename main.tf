@@ -43,6 +43,12 @@ module "network" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
+   # networking parameters
+  ig_route_id  = module.vcn.ig_route_id
+  nat_route_id = module.vcn.nat_route_id
+  subnets      = var.subnets
+  vcn_id       = module.vcn.vcn_id
+
   # waf integration
   enable_waf = var.enable_waf
 
