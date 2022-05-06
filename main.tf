@@ -72,7 +72,7 @@ module "extensions" {
   ssh_public_key_path  = var.ssh_public_key_path
 
 
-  debug_mode = var.debug_mode
+
 
   depends_on = [
     module.network

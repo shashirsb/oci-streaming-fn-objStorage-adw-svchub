@@ -284,11 +284,11 @@ variable "freeform_tags" {
 }
 
 # placeholder variable for debugging scripts. To be implemented in future
-variable "debug_mode" {
+/* variable "debug_mode" {
   default     = false
   description = "Whether to turn on debug mode."
   type        = bool
-}
+} */
 /* 
 
 # dbserver
