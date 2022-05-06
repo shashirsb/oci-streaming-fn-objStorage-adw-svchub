@@ -17,31 +17,9 @@ variable "subnets" {
 
 variable "vcn_id" {}
 
-# cluster endpoint
 
-variable "control_plane_type" {
-  type = string
-}
 
-variable "control_plane_allowed_cidrs" {
-  type = list(string)
-}
 
-# oke workers
-
-variable "allow_node_port_access" {
-  type = bool
-}
-
-variable "allow_worker_internet_access" {
-  type = bool
-}
-
-variable "allow_worker_ssh_access" {
-  type = bool
-}
-
-variable "worker_type" {}
 
 # load balancers
 
@@ -72,7 +50,4 @@ variable "public_lb_allowed_ports" {
 }
 
 
-variable "create_fss" {
-  type = bool
-}
 
