@@ -173,7 +173,7 @@ module "storage" {
 
   # general oci parameters
   compartment_id = var.compartment_id 
-
+  label_prefix   = var.label_prefix
 
   # bucket parameters
   bucket_name                       = var.bucket_name

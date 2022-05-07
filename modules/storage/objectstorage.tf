@@ -1,14 +1,12 @@
 resource "oci_objectstorage_bucket" "tf_bucket" {
     #Required
-    compartment_id = data.compartment.id
-    name = var.bucket_name
-    namespace = var.bucket_namespace
+    compartment_id = var.compartment_id
+    name = "${var.label_prefix}-${var.bucket_name}"
+    namespace = "${var.label_prefix}-${var.bucket_namespace}"
 
     #Optional
   
-    freeform_tags = data.freeform_tags
+    freeform_tags = var.freeform_tags
     object_events_enabled = var.bucket_object_events_enabled
     versioning = var.bucket_versioning
-
-  
 }
