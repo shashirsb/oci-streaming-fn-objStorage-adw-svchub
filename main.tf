@@ -169,7 +169,7 @@ module "extensions" {
 
 # additional networking for oke
 module "storage" {
-  source = "./modules/storage"
+  source = "./modules/objectstorage"
 
   # general oci parameters
   compartment_id = var.compartment_id
