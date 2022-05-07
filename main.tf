@@ -182,7 +182,10 @@ module "storage" {
   bucket_versioning                 = var.bucket_versioning
 
   # freeform_tags
-  freeform_tags = var.freeform_tags["objectstorage"]
+  freeform_tags = {
+      environment = "dev"
+      entity        = "appdev"
+    }
 
   depends_on = [
     module.vcn
