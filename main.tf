@@ -168,7 +168,7 @@ module "extensions" {
 
 
 # additional networking for oke
-module "storage" {
+module "objectstorage" {
   source = "./modules/objectstorage"
 
   # general oci parameters
