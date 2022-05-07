@@ -278,7 +278,7 @@ variable "freeform_tags" {
     # add more tags in each as desired
     vcn = {
       environment = "dev"
-    }
+    },
     objectstorage = {
       environment = "dev"
       entity        = "appdev"
