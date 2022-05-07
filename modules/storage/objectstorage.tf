@@ -13,7 +13,7 @@ resource "oci_objectstorage_bucket" "tf_bucket" {
      #Required
     compartment_id = "ocid1.compartment.oc1..aaaaaaaah6ibn4qjy6chh7ilzha53oeeacmrmghdh5ziqhzn2xtgubhxolga"
     name = "streambucket"
-    namespace = "something"
+    namespace = "sehubjapacprod"
 
     #Optional
   
