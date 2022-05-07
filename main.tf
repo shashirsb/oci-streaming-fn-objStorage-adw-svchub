@@ -168,7 +168,7 @@ module "extensions" {
 
 
 # Object Storage resource
-resource "storage" {
+module "storage" {
   source = "./modules/storage"
 
   # general oci parameters
