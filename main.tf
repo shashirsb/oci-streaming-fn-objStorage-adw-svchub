@@ -172,8 +172,8 @@ module "storage" {
   source = "./modules/storage"
 
   # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
+  /* compartment_id = var.compartment_id */
+
 
   # bucket parameters
   bucket_name                       = var.bucket_name
@@ -182,7 +182,7 @@ module "storage" {
   bucket_versioning                 = var.bucket_versioning
 
   # freeform_tags
-  freeform_tags = var.freeform_tags["objectstorage"]
+  /* freeform_tags = var.freeform_tags["objectstorage"] */
 
   depends_on = [
     module.vcn
