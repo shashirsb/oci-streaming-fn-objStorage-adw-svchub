@@ -78,24 +78,10 @@ freeform_tags = {
   vcn = {
     environment = "dev"
   }
-  bastion = {
-    access      = "public",
-    environment = "dev",
-    role        = "bastion",
-    security    = "high"
-  }
-  operator = {
-    access      = "restricted",
-    environment = "dev",
-    role        = "operator",
-    security    = "high"
-  }
-  oke = {
-    service_lb  = {
+   objectstorage = {
       environment = "dev"
-      role        = "load balancer"
+      entity        = "appdev"
     }
-  }
 }
 
 # placeholder variable for debugging scripts. To be implemented in future
@@ -125,3 +111,9 @@ data_storage_percentage   = 40
 db_software_image_ocid    = "ocid1.image.oc1..aaaaaaaarh4xixh5gaqlh4fm2l3vh55jbrj3no4nshlagv5rwu3i2qynqiqq"
 db_private_ip             = "10.2.0.29" 
 storage_management        = "LVM" 
+
+# Storage - Object storage
+bucket_name                     = "streambucket"
+bucket_namespace                = "something"
+bucket_object_events_enabled    = true
+bucket_versioning               = "Enabled"

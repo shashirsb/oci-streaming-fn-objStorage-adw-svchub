@@ -167,4 +167,26 @@ module "extensions" {
 }  */
 
 
+# additional networking for oke
+module "storage" {
+  source = "./modules/storage"
+
+  # general oci parameters
+  compartment_id = var.compartment_id
+  label_prefix   = var.label_prefix
+
+  # bucket parameters
+  bucket_name      = var.bucket_name
+  bucket_namespace = var.bucket_namespace
+  bucket_object_events_enabled      = var.bucket_object_events_enabled
+  bucket_versioning                 = var.bucket_versioning
+
+  # freeform_tags
+  freeform_tags = var.freeform_tags["objectstorage"]
+
+  depends_on = [
+    module.vcn
+  ]
+}
+
 

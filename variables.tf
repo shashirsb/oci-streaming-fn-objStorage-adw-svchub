@@ -279,19 +279,9 @@ variable "freeform_tags" {
     vcn = {
       environment = "dev"
     }
-    bastion = {
+    objectstorage = {
       environment = "dev"
-      role        = "bastion"
-    }
-    operator = {
-      environment = "dev"
-      role        = "operator"
-    }
-    oke = {
-      service_lb = {
-        environment = "dev"
-        role        = "load balancer"
-      }
+      entity        = "appdev"
     }
   }
   description = "Tags to apply to different resources."
@@ -302,6 +292,34 @@ variable "freeform_tags" {
     oke      = map(map(any)) */
   })
 }
+
+# Storage - Object Storage
+
+variable "bucket_name" {
+  default     = "none"
+  description = "Bucket name in object storage"
+  type        = string
+}
+
+variable "bucket_namespace" {
+  default     = "none"
+  description = "Bucket namespace in object storage"
+  type        = string
+}
+
+variable "bucket_object_events_enabled" {
+  default     = "none"
+  description = "Bucket events on activity in object storage"
+  type        = bool
+}
+
+variable "bucket_versioning" {
+  default     = "none"
+  description = "Bucket versioning in object storage"
+  type        = string
+}
+
+
 
 # placeholder variable for debugging scripts. To be implemented in future
 /* variable "debug_mode" {
