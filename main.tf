@@ -167,9 +167,9 @@ module "extensions" {
 }  */
 
 
-# additional networking for oke
-module "objectstorage" {
-  source = "./modules/objectstorage"
+# Object Storage resource
+resource "storage" {
+  source = "./modules/storage"
 
   # general oci parameters
   compartment_id = var.compartment_id

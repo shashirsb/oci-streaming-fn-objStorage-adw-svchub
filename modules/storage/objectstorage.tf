@@ -1,4 +1,4 @@
-resource "oci_objectstorage_bucket" "test_bucket" {
+resource "oci_objectstorage_bucket" "tf_bucket" {
     #Required
     compartment_id = var.compartment_id
     name = "${var.label_prefix}-${var.bucket_name}"
