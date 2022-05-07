@@ -1,8 +1,8 @@
 resource "oci_objectstorage_bucket" "test_bucket" {
     #Required
     compartment_id = var.compartment_id
-    name = ${var.label_prefix}-${var.bucket_name}
-    namespace = ${var.label_prefix}-${var.bucket_namespace}
+    name = var.bucket_name
+    namespace = var.bucket_namespace
 
     #Optional
   
