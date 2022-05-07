@@ -308,7 +308,7 @@ variable "bucket_namespace" {
 }
 
 variable "bucket_object_events_enabled" {
-  default     = "none"
+  default     = false
   description = "Bucket events on activity in object storage"
   type        = bool
 }
