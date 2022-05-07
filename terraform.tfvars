@@ -114,6 +114,6 @@ storage_management        = "LVM"
 
 # Storage - Object storage
 bucket_name                     = "streambucket"
-bucket_namespace                = "something"
+bucket_namespace                = "sehubjapacprod"
 bucket_object_events_enabled    = true
 bucket_versioning               = "Enabled"
