@@ -176,8 +176,8 @@ module "storage" {
   label_prefix   = var.label_prefix
 
   # bucket parameters
-  bucket_name      = var.bucket_name
-  bucket_namespace = var.bucket_namespace
+  bucket_name                       = var.bucket_name
+  bucket_namespace                  = var.bucket_namespace
   bucket_object_events_enabled      = var.bucket_object_events_enabled
   bucket_versioning                 = var.bucket_versioning
 
