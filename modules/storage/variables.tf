@@ -4,6 +4,7 @@ variable "bucket_object_events_enabled" {}
 variable "bucket_versioning" {}
 variable "compartment_id" {}
 variable "freeform_tags" {}
+variable "label_prefix" {}
 
 
 
