@@ -339,3 +339,7 @@ variable "cpu_core_count" {
   type    = number
   default = 1
 }
+variable "data_storage_size_in_tbs" {
+  type    = number
+  default = 1
+}
