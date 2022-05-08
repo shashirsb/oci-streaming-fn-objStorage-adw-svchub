@@ -90,7 +90,7 @@ debug_mode = false
 # ADB - DW variables
 db_name        = "obadw2"
 admin_password = "MyStrongPassword123"
-db_version     = "21c"
+db_version     = "19c"
 # OLTP, DW, AJD, APEX
 db_workload    = "DW"
 # Must be false for AJD and APEX
