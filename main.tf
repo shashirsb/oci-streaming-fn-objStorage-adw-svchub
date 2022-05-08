@@ -100,71 +100,29 @@ module "extensions" {
   }
 }
 
-# database 
-/* module "db" {
+# database ADB - DW
+module "db" {
   source = "./modules/db"
 
-  # ssh keys
-  ssh_private_key      = var.ssh_private_key
-  ssh_private_key_path = var.ssh_private_key_path
-  ssh_public_key       = var.ssh_public_key
-  ssh_public_key_path  = var.ssh_public_key_path
+  # general oci parameters
+  compartment_id = var.compartment_id 
+  label_prefix   = var.label_prefix
 
-  create_bastion_host = var.create_bastion_host 
-  bastion_state       = var.bastion_state
-
-   db_identity = {
-    compartment_id = var.compartment_id
-    tenancy_id     = var.tenancy_id
-  }
-
-  # since they have the same signature, we can reuse that
-  db_ssh_keys = {
-    ssh_private_key_path = var.ssh_private_key_path
-    ssh_public_key_path  = var.ssh_public_key_path
-  }
-
-  db_oci_general = {
-    availability_domain = var.availability_domains["db"]
-    label_prefix        = var.label_prefix
-  }
-
-  db_bastion = {
-    bastion_public_ip = local.bastion_public_ip
-  }
-
-  cluster_subnets = module.network.subnet_ids
-
-
-  db_config = {
-    db_system_shape         = var.db_system_shape
-    cpu_core_count          = var.cpu_core_count
-    db_edition              = var.db_edition
-    db_admin_password       = var.db_admin_password
-    db_name                 = var.db_name
-    db_home_db_name         = var.db_home_db_name
-    db_version              = var.db_version
-    db_home_display_name    = var.db_home_display_name
-    db_disk_redundancy      = var.db_disk_redundancy
-    db_system_display_name  = var.db_system_display_name
-    hostname                = var.hostname
-    n_character_set         = var.n_character_set
-    character_set           = var.character_set
-    db_workload             = var.db_workload
-    pdb_name                = var.pdb_name
-    data_storage_size_in_gb = var.data_storage_size_in_gb
-    license_model           = var.license_model
-    node_count              = var.node_count
-    data_storage_percentage = var.data_storage_percentage
-    db_software_image_ocid  = var.db_software_image_ocid
-    db_private_ip           = var.db_private_ip
-    storage_management      = var.storage_management
-  }
+  # ADB specific parameters
+  cpu_core_count           = var.cpu_core_count
+  data_storage_size_in_tbs = var.data_storage_size_in_tbs
+  db_name                  = var.db_name
+  admin_password           = var.admin_password
+  db_version               = var.db_version
+  db_workload              = var.db_workload
+  display_name             = var.db_name
+  is_free_tier             = var.is_free_tier
+  license_model            = var.license_model
 
   depends_on = [
-    module.oke
+    module.vcn
   ]
-}  */
+} 
 
 
 # Object Storage resource

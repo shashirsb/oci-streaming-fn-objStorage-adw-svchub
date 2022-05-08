@@ -87,30 +87,15 @@ freeform_tags = {
 # placeholder variable for debugging scripts. To be implemented in future
 debug_mode = false
 
-# db variables
-
-db_system_shape           = "VM.Standard2.1"
-cpu_core_count            = 2
-db_edition                = "ENTERPRISE_EDITION"
-db_admin_password         = "BEstrO0ng_#12"
-db_name                   = "basedb"
-db_home_db_name           = "basedb2"
-db_version                = "19.0.0.0"
-db_home_display_name      = "basedbhome"
-db_disk_redundancy        = "HIGH"
-db_system_display_name    = "basedb_system"
-hostname                  = "myoracledb"
-n_character_set           = "AL16UTF16"
-character_set             = "AL32UTF8"
-db_workload               = "OLTP"
-pdb_name                  = "pdb1"
-data_storage_size_in_gb   = 256
-license_model             = "LICENSE_INCLUDED"
-node_count                = 1
-data_storage_percentage   = 40
-db_software_image_ocid    = "ocid1.image.oc1..aaaaaaaarh4xixh5gaqlh4fm2l3vh55jbrj3no4nshlagv5rwu3i2qynqiqq"
-db_private_ip             = "10.2.0.29" 
-storage_management        = "LVM" 
+# ADB - DW variables
+db_name        = "obadw2"
+admin_password = "MyStrongPassword123"
+db_version     = "21c"
+# OLTP, DW, AJD, APEX
+db_workload    = "DW"
+# Must be false for AJD and APEX
+is_free_tier   = "true"
+license_model  = "LICENSE_INCLUDED"
 
 # Storage - Object storage
 bucket_name                     = "streambucket"

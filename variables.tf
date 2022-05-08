@@ -321,121 +321,21 @@ variable "bucket_versioning" {
 
 
 
-# placeholder variable for debugging scripts. To be implemented in future
-/* variable "debug_mode" {
-  default     = false
-  description = "Whether to turn on debug mode."
-  type        = bool
-} */
-/* 
+# ADB - DW
 
-# dbserver
+# Variables
 
-variable "db_system_shape" {
-  description = "compute shape of db nodes"
-  default     = "VM.Standard2.8"
-  type        = string
-}
+variable "db_name"        { type = string }
+variable "admin_password" { type = string }
+variable "db_version"     { type = string }
+# OLTP, DW, AJD, APEX
+variable "db_workload"    { type = string }
+# Must be false for AJD and APEX
+variable "is_free_tier"   { type = string }
+# BRING_YOUR_OWN_LICENSE or LICENSE_INCLUDED
+variable "license_model"  { type = string }
 
 variable "cpu_core_count" {
-  default = "2"
   type    = number
-}
-
-variable "db_edition" {
-  default = "ENTERPRISE_EDITION"
-  type    = string
-}
-
-variable "db_private_ip" {
-}
-
-variable "db_admin_password" {
-  default = "BEstrO0ng_#12"
-  type    = string
-}
-
-variable "db_name" {
-  default = "basedb"
-  type    = string
-}
-
-variable "db_home_db_name" {
-  default = "basedb2"
-  type    = string
-}
-
-variable "db_version" {
-  default = "19.0.0.0"
-  type    = string
-}
-
-variable "db_home_display_name" {
-  default = "basedbhome"
-  type    = string
-}
-
-variable "db_disk_redundancy" {
-  default = "HIGH"
-  type    = string
-}
-
-variable "db_system_display_name" {
-  default = "basedb_system"
-  type    = string
-}
-
-variable "hostname" {
-  default = "myoracledb"
-  type    = string
-}
-
-variable "n_character_set" {
-  default = "AL16UTF16"
-  type    = string
-}
-
-variable "character_set" {
-  default = "AL32UTF8"
-  type    = string
-}
-
-variable "db_workload" {
-  default = "OLTP"
-  type    = string
-}
-
-variable "pdb_name" {
-  default = "pdb1"
-  type    = string
-}
-
-variable "data_storage_size_in_gb" {
-  default = 256
-  type    = number
-}
-
-variable "license_model" {
-  default = "LICENSE_INCLUDED"
-  type    = string
-}
-
-variable "node_count" {
   default = 1
-  type    = number
 }
-
-variable "data_storage_percentage" {
-  default = 40
-  type    = number
-}
-
-variable "db_software_image_ocid" {
-  default = ""
-  type    = string
-}
-
-variable "storage_management" {
-  default = "LVM"
-  type    = string
-} */
