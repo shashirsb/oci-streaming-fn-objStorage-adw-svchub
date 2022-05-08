@@ -94,7 +94,7 @@ db_version     = "21c"
 # OLTP, DW, AJD, APEX
 db_workload    = "DW"
 # Must be false for AJD and APEX
-is_free_tier   = "true"
+is_free_tier   = "false"
 license_model  = "LICENSE_INCLUDED"
 
 # Storage - Object storage
