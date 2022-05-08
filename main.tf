@@ -115,7 +115,7 @@ module "db" {
   admin_password           = var.admin_password
   db_version               = var.db_version
   db_workload              = var.db_workload
-  display_name             = var.db_name
+  /* display_name             = var.db_name */
   is_free_tier             = var.is_free_tier
   license_model            = var.license_model
 
