@@ -323,8 +323,6 @@ variable "bucket_versioning" {
 
 # ADB - DW
 
-# Variables
-
 variable "db_name"        { type = string }
 variable "admin_password" { type = string }
 variable "db_version"     { type = string }
@@ -343,3 +341,12 @@ variable "data_storage_size_in_tbs" {
   type    = number
   default = 1
 }
+
+# Streaming
+
+variable "stream_poolname"  { type = string }
+variable "stream_name"      { type = string }
+variable "stream_partition" { 
+  type    = number
+  default = 1 
+  }

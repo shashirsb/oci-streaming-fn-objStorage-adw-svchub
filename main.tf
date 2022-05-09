@@ -150,4 +150,30 @@ module "storage" {
   ]
 }
 
+# Object Storage resource
+module "streaming" {
+  source = "./modules/streaming"
+
+  # general oci parameters
+  compartment_id = var.compartment_id 
+  label_prefix   = var.label_prefix
+
+  
+  # Streaming
+  stream_poolnam                  = var.stream_poolnam
+  stream_name                     = var.stream_name
+  stream_partition                = var.stream_partition
+
+  # freeform_tags
+  freeform_tags = {
+      environment = "dev"
+      entity        = "appdev"
+    }
+
+  depends_on = [
+    module.vcn
+  ]
+}
+
+
 

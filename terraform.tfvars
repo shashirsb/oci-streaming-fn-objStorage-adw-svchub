@@ -102,3 +102,9 @@ bucket_name                     = "streambucket"
 bucket_namespace                = "sehubjapacprod"
 bucket_object_events_enabled    = true
 bucket_versioning               = "Enabled"
+
+
+# Streaming
+stream_poolnam                  = "StreamPool"
+stream_name                     = "Stream" 
+stream_partition                = 1
