@@ -3,8 +3,8 @@ data "oci_functions_applications" "function_applications" {
   display_name   = "${var.application_name}"
 }
 
-locals {
-  
+data "oci_objectstorage_namespace" "os_namespace" {
+  tenancy_id = var.tenancy_id
 }
 
 

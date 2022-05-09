@@ -179,6 +179,7 @@ module "fn" {
   source = "./modules/fn"
 
   # general oci parameters
+  tenancy_id = var.tenancy_id
   compartment_id = var.compartment_id 
   label_prefix   = var.label_prefix
 

@@ -1,3 +1,4 @@
+variable "tenancy_id" {}
 variable "compartment_id" {}
 variable "label_prefix" {}
 variable "freeform_tags" {}
