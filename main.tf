@@ -170,7 +170,7 @@ module "streaming" {
     }
 
   depends_on = [
-    module.vcn
+    module.fn
   ]
 }
 
@@ -200,7 +200,7 @@ module "fn" {
     }
 
   depends_on = [
-    module.fn
+    module.vcn
   ]
 }
 
