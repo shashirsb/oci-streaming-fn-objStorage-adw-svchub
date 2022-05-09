@@ -82,6 +82,10 @@ freeform_tags = {
       environment = "dev"
       entity        = "appdev"
     }
+    streaming = {
+      environment = "dev"
+      entity        = "appdev"
+    }
 }
 
 # placeholder variable for debugging scripts. To be implemented in future

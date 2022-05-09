@@ -282,6 +282,10 @@ variable "freeform_tags" {
     objectstorage = {
       environment = "dev"
       entity        = "appdev"
+    },
+    streaming = {
+      environment = "dev"
+      entity        = "appdev"
     }
   }
   description = "Tags to apply to different resources."
