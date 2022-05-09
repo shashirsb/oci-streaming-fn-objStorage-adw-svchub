@@ -105,6 +105,6 @@ bucket_versioning               = "Enabled"
 
 
 # Streaming
-stream_poolnam                  = "StreamPool"
+stream_poolname                 = "StreamPool"
 stream_name                     = "Stream" 
 stream_partition                = 1
