@@ -29,5 +29,5 @@ variable "ocir_repo_name" {
     type = string
 }
 
-variable "ocir_docker_repository" {}
+
 
