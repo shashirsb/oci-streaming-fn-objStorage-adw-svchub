@@ -24,31 +24,31 @@ resource "null_resource" "FnPush2OCIR" {
   # remove function image (if it exists) from local container registry
   provisioner "local-exec" {
     command     = "image=$(docker images | grep ${local.app_name_lower} | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
-    working_dir = "modules/fn/functions/fake-fun"
+    working_dir = "fn/functions/fake-fun"
   }
 
   # remove fake-fun image  (if it exists) from local container registry
   provisioner "local-exec" {
     command     = "image=$(docker images | grep fake-fun | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
-    working_dir = "modules/fn/functions/fake-fun"
+    working_dir = "fn/functions/fake-fun"
   }
 
   # build the function; this results in an image called fake-fun (because of the name attribnute in the func.yaml file)
   provisioner "local-exec" {
     command     = "fn build --verbose"
-    working_dir = "modules/fn/functions/fake-fun"
+    working_dir = "fn/functions/fake-fun"
   }
 
   # tag the container image with the proper name - based on the actual name of the function
   provisioner "local-exec" {
     command     = "image=$(docker images | grep fake-fun | awk -F ' ' '{print $3}') ; docker tag $image ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
-    working_dir = "modules/fn/functions/fake-fun"
+    working_dir = "fn/functions/fake-fun"
   }
 
   # create a container image based on fake-fun (hello world), tagged for the designated function name 
   provisioner "local-exec" {
     command     = "docker push ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
-    working_dir = "modules/fn/functions/fake-fun"
+    working_dir = "fn/functions/fake-fun"
   }
 
 }
