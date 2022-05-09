@@ -188,6 +188,8 @@ module "fn" {
   function_name                   = var.function_name
   ocir_repo_name                  = var.ocir_repo_name
   ocir_user_name                  = var.ocir_user_name
+  ocir_user_password              = var.ocir_user_password
+  
   application_name                = var.application_name
   region                          = var.region
 
