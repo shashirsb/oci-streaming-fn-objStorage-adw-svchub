@@ -112,3 +112,13 @@ bucket_versioning               = "Enabled"
 stream_poolname                 = "StreamPool"
 stream_name                     = "Stream" 
 stream_partition                = 1
+
+# fn
+
+ 
+ocir_docker_repository          = join("", [lower(lookup(var.region, "key")), ".ocir.io"])
+ocir_repo_name                  = "cloudnative-2021/functions" 
+ocir_user_name                  = "shashi.bhushan.ramachandra@oracle.com"
+
+function_name                   = "my-new-function"
+application_name                = "cloudnative-2021App"

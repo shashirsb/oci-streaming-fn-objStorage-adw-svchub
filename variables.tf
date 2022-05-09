@@ -354,3 +354,12 @@ variable "stream_partition" {
   type    = number
   default = 1 
   }
+
+# fn  
+variable "ocir_docker_repository"   { type = string }
+variable "ocir_repo_name"           { type = string }
+variable "ocir_user_password"       { type = string }
+variable "ocir_user_name"           { type = string }
+
+variable "function_name"            { type = string }
+variable "application_name"         { type = string }

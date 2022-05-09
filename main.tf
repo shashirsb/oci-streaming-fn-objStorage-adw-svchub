@@ -124,7 +124,6 @@ module "db" {
   ]
 } 
 
-
 # Object Storage resource
 module "storage" {
   source = "./modules/storage"
@@ -163,6 +162,32 @@ module "streaming" {
   stream_poolname                  = var.stream_poolname
   stream_name                     = var.stream_name
   stream_partition                = var.stream_partition
+
+  # freeform_tags
+  freeform_tags = {
+      environment = "dev"
+      entity        = "appdev"
+    }
+
+  depends_on = [
+    module.vcn
+  ]
+}
+
+# Object Storage resource
+module "fn" {
+  source = "./modules/fn"
+
+  # general oci parameters
+  compartment_id = var.compartment_id 
+  label_prefix   = var.label_prefix
+
+  
+  # function - fake-fun
+  function_name                   = var.function_name
+  ocir_repo_name                  = var.ocir_repo_name
+  ocir_user_name                  = var.ocir_user_name
+  application_name                = var.application_name
 
   # freeform_tags
   freeform_tags = {
