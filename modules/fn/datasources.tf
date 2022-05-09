@@ -4,7 +4,7 @@ data "oci_functions_applications" "function_applications" {
 }
 
 data "oci_objectstorage_namespace" "os_namespace" {
-  tenancy_id = var.tenancy_id
+  compartment_id  = var.tenancy_id
 }
 
 
