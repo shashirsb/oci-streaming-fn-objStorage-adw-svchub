@@ -200,7 +200,7 @@ module "fn" {
     }
 
   depends_on = [
-    module.vcn
+    module.fn
   ]
 }
 
