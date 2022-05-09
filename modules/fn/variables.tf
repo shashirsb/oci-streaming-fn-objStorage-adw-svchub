@@ -20,3 +20,7 @@ variable "test_invoke_function_body"  {
   default = "{\"name\": \"Brave New World\"}"
 } 
 
+variable "ocir_docker_repository" {
+    type = string
+}
+
