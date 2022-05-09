@@ -15,6 +15,8 @@ resource "null_resource" "Login2OCIR" {
   }
 }
 
+
+
 ### build the function into a container image and push that image to the repository in the OCI Container Image Registry
 resource "null_resource" "FnPush2OCIR" {
   depends_on = [null_resource.Login2OCIR, oci_artifacts_container_repository.container_repository_for_function]

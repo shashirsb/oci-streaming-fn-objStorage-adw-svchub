@@ -115,8 +115,8 @@ stream_partition                = 1
 
 # fn
 ocir_repo_name                  = "cloudnative-2021/functions" 
-ocir_user_name                  = "shashi.bhushan.ramachandra@oracle.com"
-ocir_user_password              = "R1sb8989@@@@@@"
+ocir_user_name                  = "shashib"
+ocir_user_password              = "8TI6_ERWvN]g9lAxAk+v"
 
 function_name                   = "my-new-function"
 application_name                = "cloudnative-2021App"
