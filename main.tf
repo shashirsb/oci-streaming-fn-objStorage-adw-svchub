@@ -120,7 +120,7 @@ module "db" {
   license_model            = var.license_model
 
   depends_on = [
-    module.vcn
+    module.fn
   ]
 } 
 
@@ -145,7 +145,7 @@ module "storage" {
     }
 
   depends_on = [
-    module.vcn
+    module.fn
   ]
 }
 
@@ -189,7 +189,7 @@ module "fn" {
   ocir_repo_name                  = var.ocir_repo_name
   ocir_user_name                  = var.ocir_user_name
   ocir_user_password              = var.ocir_user_password
-  
+
   application_name                = var.application_name
   region                          = var.region
 
