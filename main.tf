@@ -160,7 +160,7 @@ module "streaming" {
 
   
   # Streaming
-  stream_poolnam                  = var.stream_poolnam
+  stream_poolname                  = var.stream_poolname
   stream_name                     = var.stream_name
   stream_partition                = var.stream_partition
 
