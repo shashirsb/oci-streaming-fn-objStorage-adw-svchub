@@ -116,7 +116,7 @@ stream_partition                = 1
 # fn
 
  
-ocir_docker_repository          = join("", [lower(lookup(var.region, "key")), ".ocir.io"])
+
 ocir_repo_name                  = "cloudnative-2021/functions" 
 ocir_user_name                  = "shashi.bhushan.ramachandra@oracle.com"
 

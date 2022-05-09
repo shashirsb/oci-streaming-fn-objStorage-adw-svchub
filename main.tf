@@ -188,6 +188,7 @@ module "fn" {
   ocir_repo_name                  = var.ocir_repo_name
   ocir_user_name                  = var.ocir_user_name
   application_name                = var.application_name
+  region                          = var.region
 
   # freeform_tags
   freeform_tags = {
