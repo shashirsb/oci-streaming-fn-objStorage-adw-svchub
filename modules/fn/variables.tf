@@ -24,3 +24,7 @@ variable "region" {
     type = string
 }
 
+variable "ocir_repo_name" {
+    type = string
+}
+
