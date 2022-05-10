@@ -60,7 +60,7 @@ resource "oci_functions_application" "FnApp" {
 }
 
 resource "oci_functions_function" "new_function" {
-  depends_on     = [null_resource.FnPush2OCIR]
+  depends_on     = [oci_functions_application.FnApp]
   application_id = "${local.application_id}"
   display_name   = "${var.function_name}"
   image          = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
