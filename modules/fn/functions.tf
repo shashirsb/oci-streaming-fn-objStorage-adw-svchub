@@ -67,7 +67,7 @@ resource "oci_functions_function" "new_function" {
   application_id = oci_functions_application.FnApp.id
   display_name   = "${var.function_name}"
   //image          = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
-  image          = "sehubjapacprod/fedbank/functions/my-new-function:0.0.1"
+  image          = "sehubjapacprod/sehubjapacprod/fedbank/functions/my-new-function:0.0.1"
   memory_in_mbs  = "128"
   config = tomap({
     DUMMY_CONFIG_PARAM = "no value required"
