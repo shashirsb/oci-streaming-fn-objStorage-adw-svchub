@@ -1,4 +1,5 @@
 data "oci_functions_applications" "function_applications" {
+    depends_on = [ oci_functions_application.FnApp]
   compartment_id = var.compartment_id
   display_name   = "${var.application_name}"
 }
