@@ -53,6 +53,12 @@ resource "null_resource" "FnPush2OCIR" {
 
 }
 
+resource "oci_functions_application" "FnApp" {
+    compartment_id = var.compartment_id
+    display_name = data.display_name
+    subnet_ids = [oci_core_subnet.db.id]
+}
+
 resource "oci_functions_function" "new_function" {
   depends_on     = [null_resource.FnPush2OCIR]
   application_id = "${local.application_id}"
