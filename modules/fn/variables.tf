@@ -29,5 +29,9 @@ variable "ocir_repo_name" {
     type = string
 }
 
+variable "cluster_subnets" {
+  type = map(any)
+}
+
 
 
