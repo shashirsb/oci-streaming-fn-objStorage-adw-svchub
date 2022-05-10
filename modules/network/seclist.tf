@@ -3,7 +3,7 @@
 
 
 # db security checklist
-/* resource "oci_core_security_list" "db" {
+resource "oci_core_security_list" "db" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "db" : "${var.label_prefix}-db"
   vcn_id         = var.vcn_id
@@ -15,23 +15,14 @@
 
   ingress_security_rules {
     # ssh
-    protocol = local.tcp_protocol
-    source   = local.vcn_cidr
+    protocol = local.all_protocols
+    source   = local.anywhere
 
     tcp_options {
       min = local.ssh_port
       max = local.ssh_port
     }
   }
-  ingress_security_rules {
-    # db port
-    protocol = local.tcp_protocol
-    source   = local.vcn_cidr
 
-    tcp_options {
-      min = local.db_port
-      max = local.db_port
-    }
-  }
-} */
+} 
 
