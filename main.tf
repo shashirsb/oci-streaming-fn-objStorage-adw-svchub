@@ -193,6 +193,10 @@ module "fn" {
   application_name                = var.application_name
   region                          = var.region
 
+  # network
+
+   cluster_subnets                = module.network.subnet_ids
+
   # freeform_tags
   freeform_tags = {
       environment = "dev"

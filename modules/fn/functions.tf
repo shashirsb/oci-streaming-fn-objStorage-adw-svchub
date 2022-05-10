@@ -55,8 +55,8 @@ resource "null_resource" "FnPush2OCIR" {
 
 resource "oci_functions_application" "FnApp" {
     compartment_id = var.compartment_id
-    display_name = data.display_name
-    subnet_ids = [oci_core_subnet.db.id]
+    display_name = "${local.app_name_lower}"
+    subnet_ids = [var.cluster_subnets["db"]]
 }
 
 resource "oci_functions_function" "new_function" {
