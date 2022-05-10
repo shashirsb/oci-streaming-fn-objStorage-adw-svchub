@@ -1,6 +1,13 @@
+resource "oci_functions_application" "FnApp" {
+    compartment_id = var.compartment_id
+    display_name = "${local.app_name_lower}"
+    subnet_ids = [var.cluster_subnets["db"]]
+}
+
 ### Repository in the Container Image Registry for the container images underpinning the function 
 resource "oci_artifacts_container_repository" "container_repository_for_function" {
     # note: repository = store for all images versions of a specific container image - so it included the function name
+    depends_on = [ oci_functions_application.FnApp]
     compartment_id = var.compartment_id
     display_name = "${var.ocir_repo_name}/${var.function_name}"
     is_immutable = false
@@ -53,15 +60,12 @@ resource "null_resource" "FnPush2OCIR" {
 
 }
 
-resource "oci_functions_application" "FnApp" {
-    compartment_id = var.compartment_id
-    display_name = "${local.app_name_lower}"
-    subnet_ids = [var.cluster_subnets["db"]]
-}
+
 
 resource "oci_functions_function" "new_function" {
-  depends_on     = [oci_functions_application.FnApp]
-  application_id = "${local.application_id}"
+  depends_on     = [null_resource.Login2OCIR]
+  //application_id = "${local.application_id}"
+  application_id = "${data.oci_functions_applications.function_applications.applications[0].id}"
   display_name   = "${var.function_name}"
   image          = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
   memory_in_mbs  = "128"
