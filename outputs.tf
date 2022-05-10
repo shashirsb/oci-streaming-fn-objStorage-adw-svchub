@@ -69,3 +69,7 @@ output "Stream_Patition" {
 output "Stream_id" {
   value = module.streaming.Stream_id
 }
+
+output "function_response" {
+  value = module.fn.function_response
+}

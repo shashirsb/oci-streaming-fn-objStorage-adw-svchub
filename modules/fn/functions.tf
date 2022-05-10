@@ -99,6 +99,3 @@ resource "oci_functions_invoke_function" "test_invoke_new_function" {
     base64_encode_content = false
 }
 
-output "function_response" {
-  value = oci_functions_invoke_function.test_invoke_new_function.content
-}
