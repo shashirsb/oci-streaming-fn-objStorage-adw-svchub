@@ -32,7 +32,7 @@ resource "oci_core_subnet" "db" {
   compartment_id             = var.compartment_id
   display_name               = var.label_prefix == "none" ? "db" : "${var.label_prefix}-db"
   dns_label                  = "db"
-  prohibit_public_ip_on_vnic = true
+  prohibit_public_ip_on_vnic = false
   route_table_id             = var.nat_route_id
   vcn_id                     = var.vcn_id
   /* security_list_ids          = [oci_core_security_list.db.id] */

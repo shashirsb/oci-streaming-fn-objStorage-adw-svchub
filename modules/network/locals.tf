@@ -82,27 +82,20 @@ locals {
 
   # db - defined but not used
 
-/* db_ingress_seclist = [
+ db_ingress_seclist = [
     {
-      description = "Allow DB host to accept ssh request from Bastion.",
+      description = "Allow fn host to accept ssh request .",
       protocol    = local.all_protocols,
-      port        = local.ssh_port,
-      source      = local.bastion_subnet,
-      source_type = "CIDR_BLOCK",
-      stateless   = false
-    },
-    {
-      description = "Allow DB host to accept ssh request from Bastion.",
-      protocol    = local.all_protocols,
-      port        = 1521,
-      source      = local.bastion_subnet,
+      port        = -1,
+      source      = "0.0.0.0/0",
       source_type = "CIDR_BLOCK",
       stateless   = false
     },
   ]
+
   db_port = 1521
 
 
-} */
+} 
 
 }

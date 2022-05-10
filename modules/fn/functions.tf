@@ -77,7 +77,7 @@ resource "oci_functions_function" "new_function" {
 ##│Suggestion: Either the resource has been deleted or service Functions Invoke Function need policy to access this resource. 
 resource "time_sleep" "wait_for_function_to_be_ready" {
   depends_on = [oci_functions_function.new_function]
-  create_duration = "10s"
+  create_duration = "15s"
 }
 
 resource "oci_functions_invoke_function" "test_invoke_new_function" {
