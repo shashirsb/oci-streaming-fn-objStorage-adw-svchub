@@ -10,11 +10,11 @@ variable "ocir_user_password" {
     }
 
 variable "application_name" {
-  default = "cloudnative-2021App"
+   type = string
 }
 
 variable "function_name" {
-  default = "my-new-function"
+   type = string
 }
 
 variable "test_invoke_function_body"  {
