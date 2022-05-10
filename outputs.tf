@@ -35,3 +35,37 @@ output "vcn_id" {
   value       = module.vcn.vcn_id
 }
 
+///////////////////////////////////
+
+output "db_name" {
+  value = module.db.oci_database_autonomous_database.adb_dw.display_name
+}
+
+output "db_state" {
+  value = module.db.oci_database_autonomous_database.adb_dw.state
+}
+
+
+output "bucket_name" {
+  value = module.storage.oci_objectstorage_bucket.tf_bucket.name
+}
+
+output "bucket_id" {
+  value = module.storage.oci_objectstorage_bucket.tf_bucket.bucket_id
+}
+
+output "stream_poolname" {
+  value = module.streaming.oci_streaming_stream_pool.StreamPool.name
+}
+
+output "Stream" {
+  value = module.streaming.oci_streaming_stream.Stream.name
+}
+
+output "Stream_Patition" {
+  value = module.streaming.oci_streaming_stream.Stream.partitions
+}
+
+output "Stream_id" {
+  value = module.streaming.oci_streaming_stream.Stream.stream_pool_id
+}
