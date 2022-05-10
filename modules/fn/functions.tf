@@ -60,13 +60,13 @@ resource "null_resource" "FnPush2OCIR" {
 
 }
 
-resource "time_sleep" "wait_for_function_to_be_ready" {
+resource "time_sleep" "wait_for_image_push_to_be_ready" {
   depends_on = [null_resource.FnPush2OCIR]
   create_duration = "15s"
 }
 
 resource "oci_functions_function" "new_function" {
-  depends_on     = [time_sleep.wait_for_function_to_be_ready]
+  depends_on     = [time_sleep.wait_for_image_push_to_be_ready]
   application_id = oci_functions_application.FnApp.id
   display_name   = "${var.function_name}"
   //image          = "phx.ocir.io/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
