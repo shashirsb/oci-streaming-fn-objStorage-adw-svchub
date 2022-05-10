@@ -60,13 +60,16 @@ resource "null_resource" "FnPush2OCIR" {
 
 }
 
-
+resource "time_sleep" "wait_for_function_to_be_ready" {
+  depends_on = [null_resource.FnPush2OCIR]
+  create_duration = "15s"
+}
 
 resource "oci_functions_function" "new_function" {
-  depends_on     = [null_resource.FnPush2OCIR]
+  depends_on     = [time_sleep.wait_for_function_to_be_ready]
   application_id = oci_functions_application.FnApp.id
   display_name   = "${var.function_name}"
-  //image          = "${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
+  //image          = "phx.ocir.io/${local.ocir_namespace}/${var.ocir_repo_name}/${var.function_name}:0.0.1"
   image          = "phx.ocir.io/sehubjapacprod/fedbank/functions/my-new-function:0.0.1"
   memory_in_mbs  = "128"
   config = tomap({
@@ -87,7 +90,7 @@ resource "time_sleep" "wait_for_function_to_be_ready" {
 resource "oci_functions_invoke_function" "test_invoke_new_function" {
   depends_on     = [time_sleep.wait_for_function_to_be_ready]
     #Required
-    function_id = "ocid1.fnfunc.oc1.phx.aaaaaaaaqrtdbyoe4u75jclmdwox23z5msfmw7b3dwp3qxwoumtdixbfda6a" //oci_functions_function.new_function.id
+    function_id = oci_functions_function.new_function.id
 
     #Optional
     invoke_function_body = var.test_invoke_function_body
