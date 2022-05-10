@@ -87,7 +87,7 @@ resource "time_sleep" "wait_for_function_to_be_ready" {
 resource "oci_functions_invoke_function" "test_invoke_new_function" {
   depends_on     = [time_sleep.wait_for_function_to_be_ready]
     #Required
-    function_id = "ocid1.fnfunc.oc1.phx.aaaaaaaaqy5gakvswshb4qvsbdhbk4m26n4vc7woslhtizvtoyrdijcwstfa" //oci_functions_function.new_function.id
+    function_id = oci_functions_function.new_function.id
 
     #Optional
     invoke_function_body = var.test_invoke_function_body
