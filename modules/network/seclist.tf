@@ -18,10 +18,6 @@ resource "oci_core_security_list" "db" {
     protocol = local.all_protocols
     source   = local.anywhere
 
-    tcp_options {
-      min = local.ssh_port
-      max = local.ssh_port
-    }
   }
 
 } 
