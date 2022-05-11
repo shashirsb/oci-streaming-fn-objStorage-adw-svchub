@@ -185,8 +185,8 @@ module "fn" {
 
  # Streaming argument
 
- stream_id             = module.streaming.Stream.Stream_id
- stream_endpoint       = module.streaming.Stream_messages_endpoint
+ stream_id             = module.streaming.Stream.id
+ stream_endpoint       = module.streaming.StreamPool.endpoint_fqdn
   
   # function - fake-fun
   
