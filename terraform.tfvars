@@ -114,7 +114,7 @@ stream_name                     = "Stream"
 stream_partition                = 1
 
 # fn
-ocir_repo_name                  = ["fedbank/fn1","fedbank/fn2","fedbank/fn3"] 
+ocir_repo_names                  = ["fedbank/fn1","fedbank/fn2","fedbank/fn3"] 
 ocir_user_name                  = "oracleidentitycloudservice/shashib"
 ocir_user_password              = "8TI6_ERWvN]g9lAxAk+v"
 
