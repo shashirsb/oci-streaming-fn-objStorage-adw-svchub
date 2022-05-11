@@ -187,15 +187,15 @@ resource "time_sleep" "wait_for_function_to_be_ready_push2stream" {
   create_duration = "15s"
 }
 
-/* resource "oci_functions_invoke_function" "test_invoke_new_function_push2stream" {
+resource "oci_functions_invoke_function" "test_invoke_new_function_push2stream" {
   depends_on     = [time_sleep.wait_for_function_to_be_ready_push2stream]
     #Required
-    function_id = oci_functions_function.new_function.id
+    function_id = oci_functions_function.new_function_push2stream.id
 
     #Optional
-    invoke_function_body = var.test_invoke_function_body
+    invoke_function_body = var.test_invoke_function_body_push2stream
     fn_intent = "httprequest"
     fn_invoke_type = "sync" 
     base64_encode_content = false
-} */
+}
 

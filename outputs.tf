@@ -73,3 +73,8 @@ output "Stream_id" {
 output "function_response" {
   value = module.fn.function_response
 }
+
+output "function_response_push2stream" {
+  value = module.fn.function_response_push2stream
+}
+

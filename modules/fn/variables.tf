@@ -17,6 +17,11 @@ variable "test_invoke_function_body"  {
   default = "{\"name\": \"Brave New World\"}"
 } 
 
+variable "test_invoke_function_body_push2stream"  {
+  default = "{\"iot_key\": \"machine555\", \"iot_data\": \"555\"}"
+} 
+
+
 variable "region" {
     type = string
 }
