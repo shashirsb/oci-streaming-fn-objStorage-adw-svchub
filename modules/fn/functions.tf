@@ -47,7 +47,7 @@ resource "null_resource" "FnPush2OCIR" {
 
   # build the function; this results in an image called fake-fun (because of the name attribnute in the func.yaml file)
   provisioner "local-exec" {
-    command     = "fn build --verbose --build-arg ARG_STREAM_OCID=${module.streaming.oci_streaming_stream.Stream.id} --build-arg ARG_STREAM_ENDPOINT=${module.streaming.oci_streaming_stream_pool.StreamPool.endpoint_fqdn}"
+    command     = "fn build --verbose --build-arg ARG_STREAM_OCID=${module.streaming.Stream_id} --build-arg ARG_STREAM_ENDPOINT=${module.streaming.Stream_messages_endpoint}"
     working_dir = "modules/fn/functions/fake-fun"
   }
 
