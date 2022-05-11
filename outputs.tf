@@ -70,6 +70,11 @@ output "Stream_id" {
   value = module.streaming.Stream_id
 }
 
+
+output "Stream_messages_endpoint" {
+  value = module.streaming.Stream_messages_endpoint
+}
+
 output "function_response" {
   value = module.fn.function_response
 }

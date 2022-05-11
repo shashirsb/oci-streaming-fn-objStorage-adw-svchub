@@ -11,6 +11,10 @@ output "Stream_Patition" {
 }
 
 output "Stream_id" {
-  value = oci_streaming_stream.Stream.stream_pool_id
+  value = oci_streaming_stream.Stream.id
+}
+
+output "Stream_messages_endpoint" {
+  value = oci_streaming_stream.Stream.messages_endpoint
 }
 
