@@ -113,7 +113,7 @@ resource "oci_functions_invoke_function" "test_invoke_new_function" {
 ### Repository in the Container Image Registry for the container images underpinning the function 
 resource "oci_artifacts_container_repository" "container_repository_for_fn_push2stream" {
     # note: repository = store for all images versions of a specific container image - so it included the function name
-    depends_on = [ module.streaming, oci_functions_invoke_function.test_invoke_new_function]
+    depends_on = [ oci_functions_invoke_function.test_invoke_new_function]
     compartment_id = var.compartment_id
     display_name = "${var.ocir_repo_names[1]}/${var.function_names[1]}"
     is_immutable = false
