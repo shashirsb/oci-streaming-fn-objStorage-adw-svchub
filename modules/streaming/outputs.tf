@@ -15,6 +15,6 @@ output "Stream_id" {
 }
 
 output "Stream_messages_endpoint" {
-  value = oci_streaming_stream.Stream.messages_endpoint
+  value = oci_streaming_stream_pool.StreamPool.endpoint_fqdn
 }
 

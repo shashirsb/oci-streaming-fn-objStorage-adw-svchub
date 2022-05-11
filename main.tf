@@ -183,6 +183,10 @@ module "fn" {
   compartment_id = var.compartment_id 
   label_prefix   = var.label_prefix
 
+ # Streaming argument
+
+ stream_id             = module.streaming.Stream.Stream_id
+ stream_endpoint       = module.streaming.Stream_messages_endpoint
   
   # function - fake-fun
   
