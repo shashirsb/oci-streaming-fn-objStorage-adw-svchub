@@ -35,13 +35,13 @@ resource "null_resource" "FnPush2OCIR" {
 
   # remove function image (if it exists) from local container registry
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep ${local.app_name_lower} | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
     working_dir = "modules/fn/functions/fake-fun"
   }
 
   # remove fake-fun image  (if it exists) from local container registry
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep fake-fun | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
     working_dir = "modules/fn/functions/fake-fun"
   }
 
@@ -53,7 +53,7 @@ resource "null_resource" "FnPush2OCIR" {
 
   # tag the container image with the proper name - based on the actual name of the function
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep fake-fun | awk -F ' ' '{print $3}') ; docker tag $image ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_names[0]}/${var.function_names[0]}:0.0.1"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker tag $image ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_names[0]}/${var.function_names[0]}:0.0.1"
     working_dir = "modules/fn/functions/fake-fun"
   }
 
@@ -75,7 +75,7 @@ resource "oci_functions_function" "new_function" {
   application_id = oci_functions_application.FnApp.id
   display_name   = "${var.function_names[0]}"
   //image          = "phx.ocir.io/${local.ocir_namespace}/${var.ocir_repo_names[0]}/${var.function_names[0]}:0.0.1"
-  image          = "phx.ocir.io/sehubjapacprod/fedbank/functions/my-new-function:0.0.1"
+  image          = "phx.ocir.io/sehubjapacprod/fedbank/fn1/my-new-function:0.0.1"
   memory_in_mbs  = "128"
   config = tomap({
     DUMMY_CONFIG_PARAM = "no value required"
@@ -130,13 +130,13 @@ resource "null_resource" "FnPush2Stream" {
 
   # remove function image (if it exists) from local container registry
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep ${local.app_name_lower} | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
     working_dir = "modules/fn/functions/push2stream"
   }
 
   # remove push2stream image  (if it exists) from local container registry
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep push2stream | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker rmi -f $image &> /dev/null ; echo $image"
     working_dir = "modules/fn/functions/push2stream"
   }
 
@@ -148,7 +148,7 @@ resource "null_resource" "FnPush2Stream" {
 
   # tag the container image with the proper name - based on the actual name of the function
   provisioner "local-exec" {
-    command     = "image=$(docker images | grep push2stream | awk -F ' ' '{print $3}') ; docker tag $image ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_names[1]}/${var.function_names[1]}:0.0.1"
+    command     = "image=$(docker images | grep fedbank | awk -F ' ' '{print $3}') ; docker tag $image ${local.ocir_docker_repository}/${local.ocir_namespace}/${var.ocir_repo_names[1]}/${var.function_names[1]}:0.0.1"
     working_dir = "modules/fn/functions/push2stream"
   }
 
@@ -170,7 +170,7 @@ resource "oci_functions_function" "new_function_push2stream" {
   application_id = oci_functions_application.FnApp.id
   display_name   = "${var.function_names[1]}"
   //image          = "phx.ocir.io/${local.ocir_namespace}/${var.ocir_repo_names[1]}/${var.function_names[1]}:0.0.1"
-  image          = "phx.ocir.io/sehubjapacprod/fedbank/functions/push2stream:0.0.1"
+  image          = "phx.ocir.io/sehubjapacprod/fedbank/fn2/push2stream:0.0.1"
   memory_in_mbs  = "128"
   config = tomap({
     DUMMY_CONFIG_PARAM = "no value required"
