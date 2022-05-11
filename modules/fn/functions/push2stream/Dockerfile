@@ -21,10 +21,10 @@ COPY --from=build-stage /python /python
 
 ENV PYTHONPATH=/python
 
-ARG ARG_STREAM_OCID=${module.streaming.Stream_id}
+ARG ARG_STREAM_OCID=ocid
 ENV OCIFN_STREAM_OCID=$ARG_STREAM_OCID
 
-ARG ARG_STREAM_ENDPOINT=${module.streaming.Stream_messages_endpoint}
+ARG ARG_STREAM_ENDPOINT=url
 ENV OCIFN_STREAM_ENDPOINT=$ARG_STREAM_ENDPOINT
 
 RUN apt-get install libaio1

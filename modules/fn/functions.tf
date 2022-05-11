@@ -47,7 +47,7 @@ resource "null_resource" "FnPush2OCIR" {
 
   # build the function; this results in an image called fake-fun (because of the name attribnute in the func.yaml file)
   provisioner "local-exec" {
-    command     = "fn build --verbose"
+    command     = "fn build --verbose ocid=testocid.shashi url=somethinglike.shashi"
     working_dir = "modules/fn/functions/fake-fun"
   }
 
