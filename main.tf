@@ -192,8 +192,8 @@ module "fn" {
   ocir_user_name                  = var.ocir_user_name
   ocir_user_password              = var.ocir_user_password
 
-  application_name                = var.application_name
-  function_name                   = var.function_name
+  application_names               = var.application_names
+  function_names                  = var.function_names
 
   # network
   cluster_subnets                = module.network.subnet_ids

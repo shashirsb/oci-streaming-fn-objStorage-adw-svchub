@@ -9,13 +9,9 @@ variable "ocir_user_password" {
     sensitive = true
     }
 
-variable "application_name" {
-   type = string
-}
+variable "application_names" { type = list(string) }
 
-variable "function_name" {
-   type = string
-}
+variable "function_names" { type = list(string) }
 
 variable "test_invoke_function_body"  {
   default = "{\"name\": \"Brave New World\"}"

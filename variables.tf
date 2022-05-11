@@ -364,5 +364,5 @@ variable "ocir_user_password" {
     }
 variable "ocir_user_name"           { type = string }
 
-variable "function_name"            { type = string }
-variable "application_name"         { type = string }
+variable "function_names"            { type = list(string) }
+variable "application_names"         { type = list(string) }

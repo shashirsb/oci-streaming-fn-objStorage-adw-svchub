@@ -1,6 +1,6 @@
 data "oci_functions_applications" "function_applications" {
   compartment_id = var.compartment_id
-  display_name   = "${var.application_name}"
+  display_name   = "${var.application_names[0]}"
 }
 
 data "oci_objectstorage_namespace" "os_namespace" {

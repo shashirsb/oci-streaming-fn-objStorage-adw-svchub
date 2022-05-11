@@ -118,5 +118,5 @@ ocir_repo_name                  = "fedbank/functions"
 ocir_user_name                  = "oracleidentitycloudservice/shashib"
 ocir_user_password              = "8TI6_ERWvN]g9lAxAk+v"
 
-function_name                   = "my-new-function"
-application_name                = "fake-fun"
+function_names                   = ["my-new-function", "push2stream"]
+application_names                = ["fedbank"]
