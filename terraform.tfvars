@@ -119,4 +119,4 @@ ocir_user_name                  = "oracleidentitycloudservice/shashib"
 ocir_user_password              = "8TI6_ERWvN]g9lAxAk+v"
 
 function_names                   = ["my-new-function", "push2stream"]
-application_names                = ["fedbank"]
+application_names                = ["appdev"]
