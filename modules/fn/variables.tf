@@ -21,9 +21,7 @@ variable "region" {
     type = string
 }
 
-variable "ocir_repo_name" {
-    type = string
-}
+variable "ocir_repo_name" { type = list(string) }
 
 variable "cluster_subnets" {
   type = map(any)

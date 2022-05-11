@@ -9,7 +9,7 @@ from base64 import b64decode, b64encode
 def handler(ctx, data: io.BytesIO=None):
     iot_key = "mykey"
     iot_data = "mydata"
-    stream_ocid = "ocid1.stream.oc1.phx.amaaaaaaak7gbriacssl6ukr7ywvlsuvj6krvvx2lndtl7oyzlqm2zreekiq"
+    stream_ocid = "ocid1.stream.oc1.phx.amaaaaaaak7gbria6br67yo57iawmrxwho6gbzdmqopvs6sxvdnrairaj45a"
     stream_endpoint = "cell-1.streaming.us-phoenix-1.oci.oraclecloud.com"	
 
     fnErrors = "No Error"     

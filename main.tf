@@ -188,7 +188,7 @@ module "fn" {
   
   region                          = var.region
 
-  ocir_repo_name                  = var.ocir_repo_name
+  ocir_repo_names                 = var.ocir_repo_names
   ocir_user_name                  = var.ocir_user_name
   ocir_user_password              = var.ocir_user_password
 

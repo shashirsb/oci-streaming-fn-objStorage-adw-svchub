@@ -357,7 +357,7 @@ variable "stream_partition" {
 
 # fn  
 
-variable "ocir_repo_name"           { type = string }
+variable "ocir_repo_names"           { type = list(string) }
 variable "ocir_user_password" {
     default = "password for OCIR repos"
     sensitive = true
