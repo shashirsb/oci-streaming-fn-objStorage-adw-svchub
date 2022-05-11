@@ -28,6 +28,6 @@ ARG ARG_STREAM_ENDPOINT="cell-1.streaming.us-phoenix-1.oci.oraclecloud.com"
 ENV OCIFN_STREAM_ENDPOINT=$ARG_STREAM_ENDPOINT
 
 RUN apt-get install libaio1
-RUN "echo $OCIFN_STREAM_OCID $OCIFN_STREAM_ENDPOINT"
+
 
 ENTRYPOINT ["/python/bin/fdk", "/function/func.py", "handler"]
