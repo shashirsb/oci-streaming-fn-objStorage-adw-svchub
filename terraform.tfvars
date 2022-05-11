@@ -121,5 +121,5 @@ ocir_user_password              = "8TI6_ERWvN]g9lAxAk+v"
 function_names                   = ["my-new-function", "push2stream"]
 application_names                = ["appdev"]
 
- stream_id             = ""
- stream_endpoint       = ""
+ /* stream_id             = ""
+ stream_endpoint       = "" */

@@ -356,8 +356,8 @@ variable "stream_partition" {
   }
 
 # fn  
-variable "stream_id"  { type = string }
-variable "stream_endpoint"  { type = string }
+/* variable "stream_id"  { type = string }
+variable "stream_endpoint"  { type = string } */
 
 variable "ocir_repo_names"           { type = list(string) }
 variable "ocir_user_password" {

@@ -48,7 +48,7 @@ resource "null_resource" "FnPush2OCIR" {
   # build the function; this results in an image called fake-fun (because of the name attribnute in the func.yaml file)
   provisioner "local-exec" {
     //command     = "fn build --verbose --build-arg ARG_STREAM_OCID='ocid1.stream.oc1.phx.amaaaaaaak7gbria6br67yo57iawmrxwho6gbzdmqopvs6sxvdnrairaj45a' --build-arg ARG_STREAM_ENDPOINT='cell-1.streaming.us-phoenix-1.oci.oraclecloud.com'"
-    command     = "fn build --verbose --build-arg ARG_STREAM_OCID=${var.stream_id} --build-arg ARG_STREAM_ENDPOINT=${var.stream_endpoint}"
+    command     = "fn build --verbose "
     working_dir = "modules/fn/functions/fake-fun"
   }
 
@@ -143,7 +143,7 @@ resource "null_resource" "FnPush2Stream" {
 
   # build the function; this results in an image called push2stream (because of the name attribnute in the func.yaml file)
   provisioner "local-exec" {
-    command     = "fn build --verbose"
+    command     = "fn build --verbose --build-arg ARG_STREAM_OCID='ocid1.stream.oc1.phx.amaaaaaaak7gbria6br67yo57iawmrxwho6gbzdmqopvs6sxvdnrairaj45a' --build-arg ARG_STREAM_ENDPOINT='cell-1.streaming.us-phoenix-1.oci.oraclecloud.com'"
     working_dir = "modules/fn/functions/push2stream"
   }
 

@@ -185,8 +185,8 @@ module "fn" {
 
  # Streaming argument
 
- stream_id             = output.Stream_id
- stream_endpoint       = output.Stream_messages_endpoint
+ /* stream_id             = output.Stream_id
+ stream_endpoint       = output.Stream_messages_endpoint */
   
   # function - fake-fun
   

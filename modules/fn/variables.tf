@@ -31,8 +31,8 @@ variable "cluster_subnets" {
   type = map(any)
 }
 
-variable "stream_id"  { type = string }
-variable "stream_endpoint"  { type = string }
+/* variable "stream_id"  { type = string }
+variable "stream_endpoint"  { type = string } */
 
 
 
