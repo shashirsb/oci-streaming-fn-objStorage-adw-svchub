@@ -21,7 +21,6 @@ variable "test_invoke_function_body_push2stream"  {
   default = "{\"iot_key\": \"machine555\", \"iot_data\": \"555\"}"
 } 
 
-
 variable "region" {
     type = string
 }
@@ -31,6 +30,9 @@ variable "ocir_repo_names" { type = list(string) }
 variable "cluster_subnets" {
   type = map(any)
 }
+
+variable "stream_id"  { type = string }
+variable "stream_endpoint"  { type = string }
 
 
 
