@@ -2,6 +2,7 @@ import io
 import os
 import json
 import oci
+import sys
 from fdk import response
 from base64 import b64decode, b64encode
 
@@ -30,6 +31,7 @@ def handler(ctx, data: io.BytesIO=None):
         stream_client.put_messages(stream_ocid, msgs)
     except (Exception, ValueError) as ex:
         fnErrors = str(ex)
+        sys.stdout.write(fnErrors)
 
     return response.Response(
         ctx, response_data=json.dumps(
