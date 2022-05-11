@@ -194,7 +194,7 @@ resource "oci_functions_invoke_function" "test_invoke_new_function_push2stream" 
     function_id = oci_functions_function.new_function_push2stream.id
 
     #Optional
-    invoke_function_body = var.test_invoke_function_body_push2stream
+    invoke_function_body = "{\"iot_key\": \"machine555\", \"iot_data\": \"555\"}"
     fn_intent = "httprequest"
     fn_invoke_type = "sync" 
     base64_encode_content = false
